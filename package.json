@@ -1,0 +1,59 @@
+{
+  "name": "nodejs-hw-02",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^9.27.0",
+    "eslint": "^9.27.0",
+    "globals": "^16.2.0",
+    "nodemon": "^3.1.10",
+    "pino-pretty": "^13.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "mongoose": "^7.5.0",
+    "pino-http": "^10.4.0",
+    "winston": "^3.8.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@eslint/js",
+      "plugin:node/recommended"
+    ],
+    "env": {
+      "node": true,
+      "es2021": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 12
+    },
+    "rules": {
+      "semi": [
+        "error",
+        "always"
+      ],
+      "no-unused-vars": [
+        "error",
+        {
+          "args": "none"
+        }
+      ],
+      "no-undef": "error"
+    }
+  }
+}
