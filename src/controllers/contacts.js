@@ -4,6 +4,9 @@ import { getAllContacts, getContactById,postContact , patchContact,deleteContact
 import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
 import { parseFilterParams } from '../utils/parseFilterParams.js';
+import { saveFileToUploadDir } from '../utils/saveFileToUploadDir.js';
+import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
+import { env } from '../utils/env.js';
 
 
 export const getAllContactsController = async (req, res) => {
@@ -69,21 +72,31 @@ export const patchContactController = async (req, res) => {
   const { contactId } = req.params;
   const contactData = req.body;
   const userId = req.user._id;
-
-  if (!contactData || Object.keys(contactData).length === 0) {
-    throw createHttpError(400, 'Contact data is required');
+  const photo = req.file;
+  let photoUrl;
+  //Feature flag
+   if (photo) {
+    if (env('ENABLE_CLOUDINARY') === 'true') {
+      photoUrl = await saveFileToCloudinary(photo);
+    } else {
+      photoUrl = await saveFileToUploadDir(photo);
+    }
   }
 
-  const updatedContact = await patchContact(contactId, contactData,userId);
+ if ((!contactData || Object.keys(contactData).length === 0) && !photo) {
+   throw createHttpError(400, 'Contact data is required');
+ }
 
-  if (!updatedContact) {
+   const result= await patchContact(contactId, {...contactData,photo:photoUrl},userId);
+
+  if (!result) {
     throw createHttpError(404, 'Contact not found');
   }
 
   res.json({
     status: 200,
     message: `Successfully patched a contact!`,
-    data: updatedContact,
+    data: result,
   });
 };
 export const deleteContactController = async (req, res) => {
