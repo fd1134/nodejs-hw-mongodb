@@ -32,12 +32,8 @@ patch:
               description: "Type of contact"
               type: string
               enum: ['work', 'home', 'personal']
-              example: 'personal'
-            userId:
-              description: "User's id"
-              type: string
-              example: '65e4decdd286b30065d54af9'
-            isFavorite:
+              example: 'personal'            
+            isFavourite:
               description: "Is contact a favorite"
               type: boolean
               example: true
