@@ -14,7 +14,7 @@
       "url": "http://localhost:3000"
     },
     {
-      "url": "https://example.com/api/v1"
+      "url": "https://hw7-swagger-xioe.onrender.com"
     }
   ],
   "tags": [
@@ -319,7 +319,7 @@
                     "phoneNumber": {
                       "description": "Contact's phone number",
                       "type": "string",
-                      "example": "+1234567890"
+                      "example": "1234567890"
                     },
                     "contactType": {
                       "description": "Type of contact",
@@ -382,9 +382,10 @@
               "description": "Contact not found"
             }
           }
-        }
-      ,
-      "delete": {    
+        
+      },
+      "delete": {
+        
           "tags": [
             "Contacts"
           ],
