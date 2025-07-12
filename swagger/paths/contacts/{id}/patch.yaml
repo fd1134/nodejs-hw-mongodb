@@ -27,7 +27,7 @@ patch:
             phoneNumber:
               description: "Contact's phone number"
               type: string
-              example: '+1234567890'
+              example: '1234567890'
             contactType:
               description: "Type of contact"
               type: string
