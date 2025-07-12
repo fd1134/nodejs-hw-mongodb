@@ -1,0 +1,61 @@
+tags:
+  - Auth
+summary: User login
+operationId: loginUser
+description: 'Login a user with payload'
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - email
+          - password
+        properties:
+          email:
+            description: "User's email"
+            type: string
+            format: email
+            example: 'john.doe@example.com'
+          password:
+            description: "User's password"
+            type: string
+            example: 'securepassword123'
+
+responses:
+  '201':
+    description: Login a user
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully login a user!
+            data:
+              $ref: ../../../components/schemas/user.yaml
+  '400':
+    description: Bad request
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+          properties:
+            status:
+              type: integer
+              example: 400
+            message:
+              type: string
+              example: Bad request
